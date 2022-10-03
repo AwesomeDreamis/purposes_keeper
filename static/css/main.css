@@ -1,0 +1,31 @@
+.main_page_content {
+    margin: 70px 0 100px 0;
+    font-size: 30px;
+    min-width: 150vh;
+    /*max-width: 50%;*/
+    color: white;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 30px;
+    padding: 40px 50px 40px 50px;
+    flex: 1 0 auto;
+}
+
+.main_image {
+    width: 25%;
+    filter: invert(1);
+    opacity: 80%;
+}
+
+.first_goal {
+    text-align: center;
+    /*background-color: rgba(255, 255, 255, 0.3);*/
+    color: white;
+    border-radius: 10px;
+}
+.first_goal a{
+    text-decoration: none;
+    color: white;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 30px 50px 30px 50px;
+}

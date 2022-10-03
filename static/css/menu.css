@@ -1,0 +1,96 @@
+.menu_item {
+    display: inline-block;
+    padding: 5px 5px 5px 5px;
+    font-size: 28px;
+    margin-top: 15px;
+    color: white;
+    cursor: pointer;
+}
+
+#logo {
+    margin-right: 50px;
+}
+
+#set_a_purpose {
+    margin-right: 50px;
+}
+
+/*.menu_item.a:hover {*/
+/*    color: black;*/
+/*}*/
+
+/*.menu_item a:active {*/
+/*    color: #0C5404;*/
+/*}*/
+
+.menu_item a {
+    text-decoration: none;
+}
+
+.menu_item a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+
+/*.user_info {*/
+/*    display: inline-block;*/
+/*    vertical-align: middle;*/
+/*    text-align: center;*/
+/*    bottom: 0;*/
+/*}*/
+
+/*.user_img {*/
+/*    object-fit: cover;*/
+/*    width: 50px;*/
+/*    height: 50px;*/
+/*    border: 3px solid black;*/
+/*    border-radius: 100px;*/
+/*}*/
+
+.unauth_user {
+    text-decoration: none;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    background-color: rgb(169, 126, 212);
+    display: none;
+    position: absolute;
+    min-width: 100%;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    z-index: 1;
+    font-size: 20px;
+    text-align: left;
+    padding: 5px 5px 5px 5px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    padding: 5px 15px 5px 15px;
+    text-decoration: none;
+    display: block;
+    color: #6f27b8;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #8548c1;
+    border-radius: 5px;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+/* body ------------------------------------------------------------------------- */

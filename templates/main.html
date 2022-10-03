@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% load static %}
+{% load i18n %}
+
+<head>
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/goals.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/login_register.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/user.css' %}" type="text/css">
+    <meta charset="UTF-8">
+
+    <title>
+        {% trans 'Главная' %}
+    </title>
+</head>
+
+
+
+
+
+
+
+<body>
+    <div class="menu_content">
+
+        <div class="menu_item" id="logo">
+            <a href="{% url 'main_page' %}">{% trans "домой" %}</a>
+        </div>
+
+        <div class="menu_item" id="set_a_purpose">
+            <a href="{% url 'create_goal' %}">{% trans "создать цель" %}</a>
+        </div>
+
+        <div class="menu_item" id="profile">
+            <div class="dropdown">
+                {% if request.user.is_authenticated %}
+                    {{ request.user.username}}
+                    <div class="dropdown-content">
+                        <p><a href="{% url 'profile' pk=request.user.id %}">{% trans "профиль" %}</a></p>
+                        <p><a href="{% url 'goals_list' pk=request.user.id %}">{% trans "мои цели" %}</a></p>
+                        <p><a href="{% url 'friends' %}">{% trans "друзья" %}</a></p>
+                        <p><a style="color: #c52525" href="{% url 'logout' %}">{% trans "выход" %}</a></p>
+                    </div>
+
+                {% else %}
+                    <a class="unauth_user" href="{% url 'login' %}">{% trans "войти" %}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="main_page_content">
+        {% if request.user.is_authenticated %}
+            <p>{{ request.user.username }},</p>
+            {% if have_goals > 0 %}
+                <p>{% trans 'вашего пополнения ожидают несколько целей' %}:</p>
+                <br>
+                {% for goal, cp in goals.items %}
+                    <a class="goal_a" href="{% url 'goal_detail' pk=goal.id %}">
+                        <div class="one_of_goals">
+                            {{ goal.title }} - {{ cp }}
+                        </div>
+                    </a>
+                {% endfor %}
+            {% else %}
+                {% trans 'Создате свою первую цель' %}
+                <br><br><br><br><br>
+                <div class="first_goal">
+                    <a href="{% url 'create_goal' %}">{% trans "создать цель" %}</a>
+                </div>
+
+            {% endif %}
+        {% else %}
+            <br>
+            <p style="text-align: left">
+                PurposesKeeper - {% trans 'сайт копилка' %}.
+            </p>
+            <br><br><br>
+            <p style="text-align: right">
+                {% trans 'Создавайте цели самостоятельно или с друзьями' %}.<br>
+                {% trans 'Копите вместе на общие цели, отслеживайте прогресс' %}.
+            </p>
+            <br><br>
+            <img class="main_image" src="/media/money-bag.png">
+        {% endif %}
+    </div>
+
+
+    <div class="bottom_content">
+        <form id="lang_form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+            <input id="lang_input" class="lang_change_form" name="next" type="hidden" value="{{ redirect_to }}">
+            <select id="lang_select" class="lang_change_from" name="language">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                    <option id="lang_option" value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                        {{ language.name_local }} ({{ language.code }})
+                    </option>
+                {% endfor %}
+            </select>
+            <input id="lang_go" class="lang_change_form" type="submit" value="Go">
+        </form>
+    </div>

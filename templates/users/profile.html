@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}
+    Profile
+{% endblock %}
+
+
+
+{% block menu %}
+    <b>{{ request.user.username }}</b>
+{% endblock %}
+
+
+{% block page_title %}
+   {% trans 'Профиль' %}
+{% endblock %}
+
+
+{% block content %}
+<div class="board">
+    <div class="profile_head">
+        <div class="profile_head_img">
+            {% if request.user.profile.profile_img %}
+                <img class="profile_img" src="{{ request.user.profile.profile_img.url }}">
+            {% endif %}
+        </div>
+
+        <div class="profile_head_name">
+            <span class="profile_item">{% trans 'Имя пользователя' %}:</span> {{ request.user.username }}
+            <br><br>
+            <span class="profile_item">{% trans 'Имя' %}:</span> {{ request.user.first_name }}
+            <br><br>
+            <span class="profile_item">{% trans 'Фамилия' %}:</span> {{ request.user.last_name }}
+            <br><br>
+            <span class="profile_item">{% trans 'Почта' %}:</span> {{ request.user.email }}
+            <br><br>
+            <a class="create_goal" href="{% url 'profile_edit' profile_id=request.user.id %}">{% trans 'Редактировать' %}</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,169 @@
+.profile_head {
+    /*margin: -20px -20px 30px -20px;*/
+    /*padding: 10px 10px 10px 10px;*/
+    background-position: center;
+    /*border-bottom-left-radius: 10px;*/
+    /*border-bottom-right-radius: 10px;*/
+}
+
+.profile_head_img {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 5%;
+}
+
+.profile_img {
+    display: inline-block;
+    object-fit: cover;
+    width: 210px;
+    height: 210px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 5%;
+    margin-bottom: -4px;
+}
+
+.profile_head_name {
+    display: inline-block;
+    font-size: 20px;
+    margin-left: 30px;
+    vertical-align: top;
+}
+
+.profile_head_name_form {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#id_profile_img {
+    font-size: 14px;
+}
+
+.profile_item {
+    color: #461a7e;
+    /*font-weight: bold;*/
+}
+
+.create_goal1 {
+    font-size: 18px;
+}
+
+.form_control1 {
+    font-size: 16px;
+    color: #1e1e1e;
+    border-radius: 10px;
+    padding: 0px 0px 0px 0px;
+    background-color: rgba(231, 239, 253, 0.46);
+    border-color: transparent;
+    /*box-shadow: 0 5px 0 -2px rgba(46, 4, 66, 0.51);*/
+    outline:none;
+    text-align: center;
+}
+
+.form_control1:focus {
+    outline:none;
+}
+
+
+.target_search_search {
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: transparent;
+    padding: 5px 10px 5px 10px;
+    color: white;
+    width: 100%;
+}
+
+.target_search_search:focus {
+    outline:none;
+}
+
+.target_search_search::placeholder{
+    color: white;
+}
+
+.pagination {
+    vertical-align: bottom;
+}
+
+.friend_block {
+    margin-bottom: 20px;
+}
+
+.friend_img {
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.5) ;
+    border-radius: 50%;
+    margin-bottom: -4px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.friend_name {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.friend_request {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.accept_friend {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    background-color: rgba(57, 182, 43, 0.9);
+    border-color: transparent;
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+}
+
+.accept_friend:hover {
+    background-color: rgba(56, 167, 44, 0.7);
+}
+
+.decline_friend {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    background-color: rgba(197, 37, 37, 0.9);
+    border-color: transparent;
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+}
+.decline_friend:hover {
+    background-color: rgba(181, 38, 38, 0.7);
+}
+
+
+#sub_button1 {
+    color: white;
+    font-size: 16px;
+    background-color: rgba(57, 182, 43, 0.9);
+    border-color: transparent;
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+}
+
+#sub_button1:hover {
+    background-color: rgba(56, 167, 44, 0.7);
+}
+
+#sub_button {
+    color: white;
+    font-size: 16px;
+    background-color: rgba(197, 37, 37, 0.9);
+    border-color: transparent;
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+}
+#sub_button:hover {
+    background-color: rgba(181, 38, 38, 0.7);
+}

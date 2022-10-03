@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}
+    {% trans 'Создать цель' %}
+{% endblock %}
+
+
+
+{% block page_title %}
+   {% trans 'Создать цель' %}
+{% endblock %}
+
+{% block content %}
+<div class="login">
+    {% if request.user.is_authenticated %}
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.author.as_hidden }}
+
+            <div class="create_form_item">
+                <div class="cfi_title">{% trans 'Название' %}</div>
+                {{ form.title }}
+            </div>
+
+            <div class="create_form_item">
+                <div class="cfi_title">{% trans 'Цель' %}, ₽ </div>
+               {{ form.value }}
+            </div>
+
+            <div class="create_form_item">
+                <div class="cfi_title">{% trans 'Дата завершения' %}</div>
+                {{ form.deadline }}
+            </div>
+
+            <div class="create_form_item">
+                <details class="cfi_title1">
+                <summary class="cfi_title">{% trans 'Добавить друзей' %}</summary>
+                    {% for friend in request.user.profile.friends.all %}
+                        <label class="friend_block1_label" for="{{ friend.id }}">
+                                <div class="friend_block1" >
+                                <input class="input_box" id="{{ friend.id }}" type="checkbox" name="participants" value="{{ friend.id }}">
+                                <img class="friend_img" src="{{ friend.profile.profile_img.url }}">
+                                <div class="friend_name">
+                                    {{ friend.username }}
+                                </div>
+                            </div>
+                        </label>
+                    {% endfor %}
+                </details>
+            </div>
+
+            <div class="create_form_item">
+                <button class="create_goal" type="submit">{% trans 'Создать' %}</button>
+            </div>
+
+        </form>
+    {% else %}
+        {% trans 'Войдите для создания цели' %}
+    {% endif %}
+
+</div>
+{% endblock %}
+
+
+
+{% block bottom %}
+{% endblock %}

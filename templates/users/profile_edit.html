@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}
+    Edit profile
+{% endblock %}
+
+
+
+
+{% block menu %}
+    <b>{{ request.user.username }}</b>
+{% endblock %}
+
+
+{% block page_title %}
+    {% trans 'Редактирование профиля' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="profile">
+    <div class="profile_head" style="background-image: url('{{ request.user.profile.profile_head_img.url }}')">
+        <div class="profile_head_img">
+            {% if request.user.profile.profile_img %}
+                <img class="profile_img" src="{{ request.user.profile.profile_img.url }}"/>
+            {% endif %}
+        </div>
+
+            <form class="profile_head_name_form" method="post" action="" enctype="multipart/form-data">
+                <div class="profile_head_name">
+                {% csrf_token %}
+                <span class="profile_item">{% trans 'Фото' %}: </span><input class="create_goal1" type="file" name="profile_img" accept="image/*" id="id_profile_img">
+                <br><br>
+                <span class="profile_item">{% trans 'Имя пользователя' %}: </span><input style="max-width: 100px" class="form_control1" type="text" name="username" value={{ request.user.username  }} maxlength="30" id="id_username">
+                <br><br>
+                <span class="profile_item">{% trans 'Имя' %}: </span><input class="form_control1" type="text" name="first_name" value={{ request.user.first_name }} maxlength="30" id="id_first_name">
+                <br><br>
+                <span class="profile_item">{% trans 'Фамилия' %}: </span><input class="form_control1" type="text" name="last_name" value={{ request.user.last_name }} maxlength="30" id="id_last_name">
+                <br><br>
+                <span class="profile_item">{% trans 'Почта' %}: </span><input class="form_control1" type="email" name="email" value={{ request.user.email }} id="id_email">
+                <br><br>
+                <button class="create_goal" type="submit">{% trans 'Сохранить' %}</button>
+            </div>
+            </form>
+    </div>
+
+
+</div>
+
+{% endblock %}

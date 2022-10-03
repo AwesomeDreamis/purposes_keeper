@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}
+    {% trans 'Изменить цель' %}
+{% endblock %}
+
+
+
+{% block page_title %}
+    {% trans 'Изменить цель' %}
+{% endblock %}
+
+{% block content %}
+<div class="board">
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.author.as_hidden }}
+
+        <div class="create_form_item">
+            <div class="cfi_title">{% trans 'Название' %}</div>
+            {{ form.title }}
+        </div>
+
+        <div class="create_form_item">
+            <div class="cfi_title">{% trans 'Цель' %}, ₽ </div>
+           {{ form.value }}
+        </div>
+
+        <div class="create_form_item">
+            <div class="cfi_title">{% trans 'Дата завершения' %}</div>
+            {{ form.deadline }}
+        </div>
+
+
+        <div class="create_form_item">
+            <button class="create_goal" type="submit">{% trans 'Сохранить' %}</button>
+        </div>
+
+    </form>
+
+    <a class="goal_leave_a" href="{% url 'goal_leave' pk=goal.id %}">{% trans 'Покинуть цель' %}</a>
+
+
+</div>
+
+{% endblock %}

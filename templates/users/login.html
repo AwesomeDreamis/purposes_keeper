@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}
+    Login
+{% endblock %}
+
+
+
+{% block menu %}
+    <b>{% trans 'Логин' %}</b>
+{% endblock %}
+
+
+
+{% block page_title %}
+   {% trans 'Войти' %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="login">
+    {% if form.errors %}
+        <p style="color: #c52525; font-weight: bold">{% trans 'Имя пользователя или почта некорректны' %}</p>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="create_form_item">
+            <div class="cfi_title">{% trans "Имя пользователя/Email" %}</div>
+            <input class="form_control" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username" placeholder="{% trans 'имя пользователя/email' %}">
+{#            {{ form.username }}#}
+        </div>
+
+        <div class="create_form_item">
+            <div class="cfi_title">{% trans "Пароль" %}</div>
+            <input class="form_control" type="password" name="password" autocomplete="current-password" required="" id="id_password" placeholder="{% trans 'введите пароль' %}">
+{#            {{ form.password }}#}
+        </div>
+        <button class="create_goal" type="submit">{% trans "Войти" %}</button>
+        <br><br>
+        <p>{% trans "Впервые на сайте?" %} <a href="{% url 'register' %}">{% trans "Регистрация" %}</a> </p>
+        <p>{% trans "или войдите с помощью" %} <a href="{% url 'social:begin' 'google-oauth2' %}">Google</a></p>
+
+
+
+    </form>
+
+</div>
+
+{% endblock %}

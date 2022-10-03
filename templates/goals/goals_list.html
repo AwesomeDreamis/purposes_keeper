@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}
+    {% trans 'Мои цели' %}
+{% endblock %}
+
+
+{% block page_title %}
+   {% trans 'Мои цели' %}
+{% endblock %}
+
+{% block content %}
+    <div class="target_search">
+        <form action="{% url 'goals_list' pk=request.user.id %}" method="get" class="target_search_form">
+            {% csrf_token %}
+            <input class="target_search_search" name="search" type="text" placeholder='{% trans "найти ..." %}'>
+        </form>
+    </div>
+
+    <div class="goals_list">
+        {% for goal in goals %}
+                <a class="goal_a" href="{% url 'goal_detail' pk=goal.id %}">
+                    <div class="one_of_goals">
+                        {{ goal.title }}
+                    </div>
+                </a>
+        {% endfor %}
+    </div>
+{% endblock %}

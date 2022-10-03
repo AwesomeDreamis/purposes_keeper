@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}
+    Register
+{% endblock %}
+
+
+
+
+{% block menu %}
+    <b>{% trans 'Register' %}</b>
+{% endblock %}
+
+
+{% block page_title %}
+   {% trans 'Регистрация' %}
+{% endblock %}
+
+{% block content %}
+
+<style>
+    [data-tooltip] {
+        position: relative; /* Относительное позиционирование */
+    }
+    [data-tooltip]::after {
+        content: attr(data-tooltip); /* Выводим текст */
+        position: absolute; /* Абсолютное позиционирование */
+        width: 300px; /* Ширина подсказки */
+        left: 0; top: 0; /* Положение подсказки */
+        background: #dddddd; /* Синий цвет фона */
+        color: #000000; /* Цвет текста */
+        padding: 0.5em; /* Поля вокруг текста */
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Параметры тени */
+        pointer-events: none; /* Подсказка */
+        opacity: 0; /* Подсказка невидима */
+        transition: 0s; /* Время появления подсказки */
+        white-space: pre-wrap;
+    }
+    [data-tooltip]:hover::after {
+        opacity: 1; /* Показываем подсказку */
+        top: 2em; /* Положение подсказки */
+    }
+</style>
+
+
+<div class="login">
+    {% for message in messages %}
+
+        <div class="alert alert-success">
+            <p style="color: #c52525; font-weight: bold">{{ message }}</p>
+        </div>
+
+    {% endfor %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="create_form_item">
+            <div class="cfi_title">{% trans "Email" %}</div>
+            {{ form.email }}
+        </div>
+
+        <div class="create_form_item">
+            <div class="cfi_title">{% trans "Имя пользователя" %}</div>
+            {{ form.username }}
+        </div>
+
+        <div class="create_form_item">
+            <div class="cfi_title" id="pass">{% trans "Пароль" %}
+
+            <span class="tooltip" data-tooltip=
+                "Пароль не должен совпадать с логином.
+                &#10;Минимум 8 символов
+                &#10;Должна быть хотя бы одна буква">
+                 <span class="pass_help">?</span>
+            </span>
+
+            </div>
+            {{ form.password1 }}
+        </div>
+
+
+        <div class="create_form_item">
+            <div class="cfi_title">{% trans "Повторите пароль" %}</div>
+            {{ form.password2 }}
+        </div>
+
+        <button class="create_goal" type="submit">{% trans "Зарегистрироваться" %}</button>
+    </form>
+</div>
+
+{% endblock %}

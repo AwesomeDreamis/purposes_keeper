@@ -1,0 +1,163 @@
+.create_form_item {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+
+.cfi_title {
+    margin-right: 1px;
+    margin-bottom: 10px;
+}
+
+.form_control {
+    font-size: 18px;
+    color: #1e1e1e;
+    border-radius: 10px;
+    padding: 5px 5px 5px 5px;
+    background-color: rgba(231, 239, 253, 0.46);
+    border-color: transparent;
+    box-shadow: 0 5px 0 -2px rgba(46, 4, 66, 0.51);
+    outline:none;
+    text-align: center;
+}
+
+.form_control:focus {
+    outline:none;
+}
+
+.form_control2 {
+    font-size: 18px;
+    color: #ffffff;
+    border-radius: 10px;
+    border-color: rgba(255, 255, 255, 0.3);
+    padding: 5px 5px 5px 5px;
+    background-color: transparent;
+    /*background-color: rgba(231, 239, 253, 0.46);*/
+    /*border-color: transparent;*/
+    /*box-shadow: 0 5px 0 -2px rgba(46, 4, 66, 0.51);*/
+    outline:none;
+    text-align: center;
+}
+
+.form_control2:focus {
+    outline:none;
+}
+
+.create_goal {
+    color: white;
+    font-size: 18px;
+    background-color: rgba(255, 255, 255, 0.34);
+    border-color: transparent;
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.create_goal:hover {
+    background-color: rgba(196, 196, 196, 0.35);
+}
+
+.friend_block1 {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 5px 10px 10px 10px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.cfi_title1 {
+    cursor: pointer;
+}
+
+/*.input_box {*/
+/*    position: absolute;*/
+/*    z-index: -1;*/
+    /*opacity: 0;*/
+/*}*/
+
+.one_of_goals {
+    background-color: rgba(255, 255, 255, 0.15);
+    margin-bottom: 10px;
+    padding: 5px 10px 7px 10px;
+    border-radius: 10px;
+}
+
+.goal_a {
+    text-decoration: none;
+    color: white;
+}
+
+.friend_block1_label {
+    cursor: pointer;
+}
+.friend_block1:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.goals_list {
+    margin-top: 20px;
+}
+
+
+.create_goal1 {
+    color: white;
+    font-size: 24px;
+    background-color: rgba(255, 255, 255, 0.34);
+    border-color: transparent;
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.create_goal1:hover {
+    background-color: rgba(196, 196, 196, 0.35);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+.goals_scale {
+    max-width: 100%;
+    color: transparent;
+    border-radius: 10px;
+}
+
+.scale_point {
+    display: inline-block;
+    background-color: greenyellow;
+    max-width: 1%;
+    width: 100%;
+}
+
+.scale_point1 {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.15);
+    max-width: 1%;
+    width: 100%
+}
+
+.ul_scale {
+
+}
+
+.scale_percent {
+    margin-top: -21px;
+    color: #904eb6;
+    text-align: center;
+}
+
+.goal_edit_a {
+    text-decoration: none;
+}
+
+.goal_edit_a:active {
+    color: #541d9c;
+}
+
+.goal_leave_a {
+    text-decoration: none;
+}

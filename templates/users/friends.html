@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}
+    {% trans 'Друзья' %}
+{% endblock %}
+
+
+
+{% block page_title %}
+   {% trans 'Друзья' %}
+{% endblock %}
+
+{% block content %}
+    <div class="target_search">
+        <form action="{% url 'friends' %}" method="get" class="target_search_form">
+            {% csrf_token %}
+            <input class="target_search_search" name="search" type="text" placeholder='{% trans "найти ..." %}'>
+        </form>
+    </div>
+
+    <div>
+        {% if friends_requests %}
+            <p>{% trans 'Запросы в друзья' %}</p>
+            {% for request in friends_requests %}
+                <div class="friend_block">
+                    <img class="friend_img" src="{{ request.from_user.profile.profile_img.url }}">
+                    <div class="friend_name">
+                        {{ request.from_user }}
+                    </div>
+                    <div class="friend_request">
+                        <a class="accept_friend" href="{% url 'accept_friend_request' request_id=request.id %}">✔</a>
+                        <a class="decline_friend" href="{% url 'decline_friend_request' request_id=request.id %}">✖</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <br>
+    <div>
+        {% if search %}
+            <p>{% trans 'Поиск' %}</p><br>
+        {% else %}
+            <p>{% trans 'Друзья' %}</p><br>
+        {% endif %}
+        {% for friend in friends %}
+            {% if friend != request.user %}
+                <div class="friend_block" id="friend_block">
+                    <img class="friend_img" src="{{ friend.profile.profile_img.url }}">
+                    <div class="friend_name">
+                        {{ friend.username }}
+                    </div>
+                    <div class="friend_request">
+                        {% include 'functions/send_friend_section.html' %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <br>
+
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if data.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ data.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ data.number }} of {{ data.paginator.num_pages }}.
+            </span>
+
+            {% if all_posts.has_next %}
+                <a href="?page={{ data.next_page_number }}">next</a>
+                <a href="?page={{ data.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}

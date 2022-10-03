@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}
+    {{ goal.title }}
+{% endblock %}
+
+
+
+{% block page_title %}
+    {{ goal.title }}
+    <a class="goal_edit_a" href="{% url 'goal_update' pk=goal.id %}">✎</a>
+{% endblock %}
+
+{% block content %}
+    <div>
+        {% trans 'Выполнено' %}: {{ sum_impacts }} / {{ goal.value }}
+        <br>
+        {% trans 'Осталось дней' %}: {{ timeleft }}
+    </div>
+    <br>
+
+    <div class="goals_scale">
+        <ul class="ul_scale">
+            {% for _ in complete %}
+                <li class="scale_point">.
+            {% endfor %}
+
+            {% for _ in left %}
+                <li class="scale_point1">.
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="scale_percent">
+        {{ complete_percent }}%
+    </div>
+    <br>
+
+    <div>
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <input class="form_control2" type="number" name="impact" min="1" max="999999" value="100">
+            <button class="create_goal1" type="submit">{% trans 'Пополнить' %}</button>
+
+        </form>
+    </div>
+    <br>
+
+    <div>
+        <details class="cfi_title1">
+            <summary class="cfi_title">{% trans 'Статистика' %}</summary>
+                {% for participant in impacts %}
+                    {{ participant.user.username }}: {{ participant.impact }}
+                    <br>
+                {% endfor %}
+        </details>
+    </div>
+    <br>
+
+    <div>
+        <details class="cfi_title1">
+            <summary class="cfi_title">{% trans 'История' %}</summary>
+                {% for operation in history %}
+                    {{ operation.created_at }} {{ operation.user.username }}: {{ operation.impact }}
+                    <br>
+                {% empty %}
+                    {% trans 'Здесь пока пусто, пополните цель первым' %}
+                {% endfor %}
+        </details>
+    </div>
+    <br>
+
+{% endblock %}

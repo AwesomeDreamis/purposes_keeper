@@ -1,0 +1,122 @@
+@font-face {
+    font-family: 'Graphik LCG';
+    src: url('../fonts/GraphikLCG-Medium.woff2') format('woff2'),
+         url('../fonts/GraphikLCG-Medium.woff') format('woff');
+    font-display: swap;
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/Gilroy-Regular.woff2') format('woff2'),
+         url('../fonts/Gilroy-Regular.woff') format('woff');
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/Gilroy-ExtraBold.woff2') format('woff2'),
+         url('../fonts/Gilroy-ExtraBold.woff') format('woff');
+    font-display: swap;
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/Gilroy-Medium.woff2') format('woff2'),
+         url('../fonts/Gilroy-Medium.woff') format('woff');
+    font-display: swap;
+    font-weight: 500;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* html ------------------------------------------------------------------------- */
+
+body {
+    margin: 0;
+    font-family: 'Gilroy', sans-serif;
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+    min-height: 100vh;
+    /*background: rgb(253,114,45);*/
+    background: linear-gradient(0deg, rgba(253,114,45,1) 0%, rgba(101,34,195,1) 100%);
+}
+
+.menu_content {
+    width: 100%;
+    height: 70px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    /*background-color: rgb(111, 39, 185);*/
+    background: linear-gradient(0deg, rgb(111, 39, 184) 0%, rgb(82, 28, 154) 100%);
+}
+
+
+.main_content {
+    height: 100%;
+    margin: 70px 15% 100px 15%;
+    min-width: 700px;
+    /*max-width: 50%;*/
+    color: white;
+    font-size: 18px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 30px;
+    padding: 40px 50px 40px 50px;
+    flex: 1 0 auto;
+}
+
+.bottom_content {
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    flex: 0 0 auto;
+}
+
+
+.page_title {
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: -40px -50px 20px -50px;
+    height: 40px;
+    padding: 5px 20px 10px 20px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    text-align: center;
+    font-size: 24px;
+    color: #7028b7;
+}
+
+
+#lang_select {
+    background-color: transparent;
+    border-radius: 5px;
+    border: transparent;
+    color: white;
+}
+#lang_select:focus {
+    outline:none;
+}
+
+
+#lang_option {
+    border-radius: 5px;
+    color: black;
+}
+
+#lang_go {
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}

@@ -1,0 +1,20 @@
+{% load static %}
+{% load i18n %}
+
+<form action="{% url 'send_friend_request' %}" method="POST" class="sub_info" id="{{ friend.id }}">
+    {% csrf_token %}
+    <input type="hidden" name="user_id" value="{{ friend.id }}">
+    {% if request.user not in friend.profile.friends.all %}
+        {% if friend in friends_submits %}
+            <button class="sub-btn{{ friend.id }}" id="sub_button" type="submit">
+            {% trans 'Запрос отправлен' %}</button>
+        {% else %}
+            {% if friend not in requests_to_me %}
+                <button  class="sub-btn{{ friend.id }}" id="sub_button1" type="submit">
+                {% trans 'Добавить в друзья' %}</button>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+</form>
+
+
