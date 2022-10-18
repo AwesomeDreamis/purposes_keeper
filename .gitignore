@@ -7,3 +7,5 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 /env/
+db.sqlite3
+debug.log

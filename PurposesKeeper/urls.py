@@ -40,8 +40,6 @@ urlpatterns = [
     path('users/', include('app_users.urls')),
     path('goals/', include('app_goals.urls')),
 
-    # path('api/', include('API_data.urls')),
-
     path('i18n/', include('django.conf.urls.i18n')),  # интернационализация
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema_swagger_ui'),  # спецификации API и методов
     path('oauth', include('social_django.urls', namespace='social')),
