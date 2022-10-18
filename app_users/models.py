@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 def user_directory_path(instance, filename):
+    """Возвращает путь по которому находится фото профиля"""
     return f'profile_images/{instance.user.id}/{filename}'
 
 
@@ -30,12 +31,6 @@ class Profile(models.Model):
         """
         return self.user.username
 
-    def increment_goals_count(self):
-        """
-        Увеличивает количество новостей пользователя на 1"""
-        self.goals_count += 1
-        self.save()
-
     def friends_count(self) -> int:
         """
         Возвращает количество друзей
@@ -46,6 +41,7 @@ class Profile(models.Model):
 
 
 class FriendRequest(models.Model):
+    """Модель запроса в друзья"""
     from_user = models.ForeignKey(User, related_name='from_user', on_delete=models.CASCADE)
     to_user = models.ForeignKey(User, related_name='to_user', on_delete=models.CASCADE)
 

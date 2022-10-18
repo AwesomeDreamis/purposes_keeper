@@ -6,19 +6,12 @@ from django.forms import Textarea
 
 class AuthForm(forms.Form):
     """Форма для логина"""
-
     username = forms.CharField(widget=Textarea(attrs={'placeholder': 'help'}))
     password = forms.CharField(widget=forms.PasswordInput)
-
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     for field in self.fields:
-    #         self.fields[field].widget.attrs['class'] = 'form_control'
 
 
 class RegisterForm(UserCreationForm):
     """Форма регистрации"""
-
     first_name = forms.CharField(max_length=30, required=False, help_text='Имя')
     last_name = forms.CharField(max_length=30, required=False, help_text='Фамилия')
     profile_img = forms.ImageField(required=False)
@@ -43,7 +36,6 @@ class RegisterForm(UserCreationForm):
 
 class ProfileEditForm(forms.Form):
     """Форма для изменения профиля"""
-
     first_name = forms.CharField(max_length=30, required=False, help_text='Имя')
     last_name = forms.CharField(max_length=30, required=False, help_text='Фамилия')
     profile_img = forms.ImageField(required=False)

@@ -1,16 +1,17 @@
-from datetime import datetime, date
+from datetime import date
 from django.contrib.auth.models import User
 from django.db.models import QuerySet
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy, reverse
 from django.views import View
-from django.views.generic import ListView, DeleteView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView
 from .forms import GoalForm, GoalUpdateForm
 from .models import Goal, UserImpact, Operation
 
 
 class GoalCreateView(View):
+    """Представление создания цели"""
+
     def get(self, request):
         form = GoalForm
         context = {'form': form}
@@ -39,6 +40,8 @@ class GoalCreateView(View):
 
 
 class GoalDetailView(DetailView):
+    """Детальное представление цели"""
+
     model = Goal
     context_object_name = 'goal'
     template_name = 'goals/goal_detail.html'
@@ -47,15 +50,15 @@ class GoalDetailView(DetailView):
         context = super(GoalDetailView, self).get_context_data(**kwargs)
         goal = self.get_object()
         impacts = UserImpact.objects.filter(goal=goal)
-        sum_impacts = sum(user.impact for user in impacts)
-        complete = int(sum_impacts * 100 / goal.value)
-        timeleft = (goal.deadline - date.today()).days
+        sum_impacts: int = sum(user.impact for user in impacts)
+        complete: int = int(sum_impacts * 100 / goal.value)
+        timeleft: int = (goal.deadline - date.today()).days
         context['timeleft'] = timeleft
         context['impacts'] = impacts
         context['sum_impacts'] = sum_impacts
-        context['complete'] = range(complete)
-        context['left'] = range(100 - complete)
-        context['complete_percent'] = round(sum_impacts * 100 / goal.value, 2)
+        context['complete']: int = range(complete)
+        context['left']: int = range(100 - complete)
+        context['complete_percent']: int = round(sum_impacts * 100 / goal.value, 2)
         context['history'] = Operation.objects.filter(goal=goal).order_by('-created_at')[:30]
 
         return context
@@ -78,6 +81,8 @@ class GoalDetailView(DetailView):
 
 
 class GoalsListView(ListView):
+    """Представление списка целей пользователя"""
+
     model = Goal
     template_name = 'goals/goals_list.html'
     context_object_name = 'goals'
@@ -88,12 +93,6 @@ class GoalsListView(ListView):
         return context
 
     def get_queryset(self) -> QuerySet:
-        """
-        Возвращает множество новостей всех пользователей
-        :return: Множество новстей
-        :rtype: QuerySet
-        """
-
         user = self.request.user
 
         if self.request.GET.get('search'):
@@ -106,21 +105,19 @@ class GoalsListView(ListView):
 
 
 class GoalUpdateView(View):
+    """Представление изменения цели"""
+
     def get(self, request, pk):
         goal = Goal.objects.get(id=pk)
-
         default_data = {
             'title': goal.title,
             'value': goal.value,
             'deadline': goal.deadline,
-
         }
-
         context = {
             'form': GoalUpdateForm(default_data),
             'goal': goal
         }
-
         return render(request, 'goals/goal_update.html', context=context)
 
     def post(self, request, pk):
@@ -134,6 +131,7 @@ class GoalUpdateView(View):
 
 
 class LeaveFromGoal(View):
+    """Представление выхода из цели"""
     def get(self, request, pk):
         user = request.user
         goal = Goal.objects.get(id=pk)

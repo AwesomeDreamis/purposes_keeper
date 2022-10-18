@@ -12,7 +12,6 @@ class ProfileAdmin(admin.ModelAdmin):
     list_filter = ['is_active', ]
     actions = ['mark_as_active', 'mark_as_not_active']
 
-
     def mark_as_active(self, request, queryset):
         queryset.update(is_active=True)
 

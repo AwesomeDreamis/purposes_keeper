@@ -1,5 +1,5 @@
 from django import forms
-from .models import Goal, Operation
+from .models import Goal
 
 
 class DateInput(forms.DateInput):
@@ -7,6 +7,7 @@ class DateInput(forms.DateInput):
 
 
 class GoalForm(forms.ModelForm):
+    """Форма цели"""
     title = forms.CharField(max_length=30, required=True)
     value = forms.IntegerField(max_value=999999, required=True)
     deadline = forms.DateField(widget=DateInput, required=True)
@@ -22,6 +23,7 @@ class GoalForm(forms.ModelForm):
 
 
 class GoalUpdateForm(forms.Form):
+    """Форма изменения цели"""
     title = forms.CharField(max_length=30, required=True)
     value = forms.IntegerField(max_value=999999, required=True)
     deadline = forms.DateField(widget=DateInput, required=True)

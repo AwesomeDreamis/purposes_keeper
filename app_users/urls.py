@@ -4,7 +4,6 @@ from .views import Login, Logout, RegisterView, \
     FriendsView, SendFriendRequest, accept_friend_request, decline_friend_request
 
 
-
 urlpatterns = [
     path('<int:pk>/', ProfileView.as_view(), name='profile'),
     path('<int:profile_id>/edit/', ProfileUpdateView.as_view(), name='profile_edit'),

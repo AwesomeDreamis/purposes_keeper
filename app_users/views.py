@@ -4,15 +4,14 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import DetailView, ListView
+from django.views.generic import ListView
 from .forms import RegisterForm, ProfileEditForm
 from .models import Profile, FriendRequest
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views import View
 import logging
-from django.core.mail import send_mail, BadHeaderError
 
 logger = logging.getLogger(__name__)
 
@@ -140,6 +139,8 @@ class ProfileUpdateView(View):
 
 
 class FriendsView(ListView):
+    """Представление страницы с друзьями"""
+
     model = User
     context_object_name = 'friends'
     template_name = 'users/friends.html'
@@ -182,6 +183,7 @@ class FriendsView(ListView):
 
 
 class SendFriendRequest(View):
+    """отправка запроса для добавления в друзья"""
     def post(self, request):
         from_user = request.user
         to_user_id = request.POST.get('user_id')
@@ -195,6 +197,7 @@ class SendFriendRequest(View):
 
 
 def accept_friend_request(request, request_id):
+    """Принимает запрос в друзья"""
     friend_request = FriendRequest.objects.get(id=request_id)
     if friend_request.to_user == request.user:
         friend_request.to_user.profile.friends.add(friend_request.from_user)
@@ -206,6 +209,7 @@ def accept_friend_request(request, request_id):
 
 
 def decline_friend_request(request, request_id):
+    """Отклоняет запрос в друзья"""
     friend_request = FriendRequest.objects.get(id=request_id)
     if friend_request.to_user == request.user:
         friend_request.delete()

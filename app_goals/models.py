@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Goal(models.Model):
+    """Модель цели"""
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, verbose_name=_('author'))
     title = models.CharField(max_length=30, verbose_name=_('title'))
     value = models.IntegerField(verbose_name=_('value'))
@@ -19,12 +20,14 @@ class Goal(models.Model):
 
 
 class UserImpact(models.Model):
+    """Модель вклада пользователя в цель"""
     goal = models.ForeignKey(Goal, on_delete=models.CASCADE, verbose_name=_('goal'))
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('user'))
     impact = models.IntegerField(verbose_name=_('impact'))
 
 
 class Operation(models.Model):
+    """Модель операции, проводимой пользователем"""
     goal = models.ForeignKey(Goal, on_delete=models.CASCADE, verbose_name=_('goal'))
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('user'))
     impact = models.IntegerField(verbose_name=_('impact'))
